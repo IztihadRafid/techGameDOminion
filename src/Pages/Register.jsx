@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import Navbar from "../Components/Navbar";
 
 const Register = () => {
  const {createUser,logOut}= useContext(AuthContext)
@@ -18,6 +19,8 @@ const Register = () => {
         })
     }
     return (
+      <div>
+        <Navbar></Navbar>
         <div className="hero mt-64 ">
         <div className="hero-content flex-col ">
           <div className="text-center ">
@@ -57,6 +60,8 @@ const Register = () => {
           </div>
         </div>
       </div>
+      </div>
+       
     );
 };
 

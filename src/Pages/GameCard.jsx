@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const GameCard = ({ game }) => {
     const { id, name, price, description, image, btn_specific } = game
@@ -16,7 +17,7 @@ const GameCard = ({ game }) => {
                 }
                 </div>
                 <div className="card-actions justify-end">
-                    <button className='px-6 py-3  rounded-md w-full font-serif font-semibold text-lg'  style={{ color: btn_specific.text_color, backgroundColor: btn_specific.btn_color }}  >Details</button>
+                   <Link to={`/GameDetails/${id}`}> <button className='px-6 py-3  rounded-md w-full font-serif font-semibold text-lg'  style={{ color: btn_specific.text_color, backgroundColor: btn_specific.btn_color }}  >Details</button></Link>
                 </div>
             </div>
         </div>

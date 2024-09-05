@@ -5,31 +5,35 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 export const AuthContext  = createContext(null)
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null)
-
+    const [loading,setLoading]= useState(true) // checking before rendering firebase
     //create user 
     const createUser = (email,password)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
 
     // Login /sign IN
     const signIn = (email,password)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
     const logOut =()=>{
+        setLoading(true)
         return signOut(auth);
     }
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth,currentUser=>{
             setUser(currentUser)
+            setLoading(false)
         });
         return ()=>{
             unSubscribe()
         }
     },[])
 
-    const authInfo = {user,createUser,logOut,signIn}
+    const authInfo = {user,createUser,loading,logOut,signIn}
 
 
     return (
